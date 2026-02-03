@@ -6,16 +6,28 @@ import { FaPencilAlt } from "react-icons/fa";
 
 function TodoList() {
   const [todo, setTodo] = React.useState([]);
+  const [edit, setEdit] = React.useState(null);
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
 
   const onSubmit = (data) => {
     setTodo([...todo, data.todo]);
+
     reset();
   };
 
   const handleDelete = (index) => {
     const newTodo = todo.filter((_, i) => i !== index);
+    setTodo(newTodo);
+  };
+
+  const handleEdit = (index) => {
+    setEdit(index);
+  };
+
+  const handleChangeTodo = (e, index) => {
+    const newTodo = [...todo];
+    newTodo[index] = e.target.value;
     setTodo(newTodo);
   };
 
@@ -46,33 +58,47 @@ function TodoList() {
                   +
                 </button>
               </div>
-
-              {/* list */}
-              <section>
-                {todo.map((item, index) => (
-                  <div
-                    key={index}
-                    className='bg-gray-300 border rounded w-full flex justify-between items-center px-5 py-2 text-base gap-4'
-                  >
-                    <div className='flex items-center gap-2'>
-                      <input className='outline-none' type='checkbox' />
-                      <input
-                        value={item}
-                        type='text'
-                        className='outline-none'
-                      />
-                    </div>
-                    <div className='flex gap-2'>
-                      <FaPencilAlt className='cursor-pointer' />
-                      <FaRegTrashAlt
-                        className='cursor-pointer'
-                        onClick={() => handleDelete(index)}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </section>
             </form>
+
+            {/* list */}
+            <section>
+              {todo.map((item, index) => (
+                <div
+                  key={index}
+                  className='bg-gray-300 border rounded w-full flex justify-between items-center px-5 py-2 text-base gap-4'
+                >
+                  <div className='flex items-center gap-2'>
+                    <input className='outline-none' type='checkbox' />
+                    <input
+                      readOnly={edit !== index}
+                      onChange={(e) => handleChangeTodo(e, index)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          setEdit(null);
+                        }
+                      }}
+                      value={item}
+                      type='text'
+                      className={`outline-none ${
+                        edit === index
+                          ? "border-b border-black bg-white"
+                          : "bg-transparent"
+                      }`}
+                    />
+                  </div>
+                  <div className='flex gap-2'>
+                    <FaPencilAlt
+                      className='cursor-pointer'
+                      onClick={() => handleEdit(index)}
+                    />
+                    <FaRegTrashAlt
+                      className='cursor-pointer'
+                      onClick={() => handleDelete(index)}
+                    />
+                  </div>
+                </div>
+              ))}
+            </section>
           </div>
         </div>
       </div>
