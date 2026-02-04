@@ -3,22 +3,25 @@ import { useForm } from "react-hook-form";
 
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { addTask, editTask, removeTask } from "../redux/reducers/todosReducer";
 
 function TodoList() {
-  const [todo, setTodo] = React.useState([]);
   const [edit, setEdit] = React.useState(null);
 
-  const { register, handleSubmit, reset, setValue } = useForm();
+  const dispatch = useDispatch();
+
+  const todos = useSelector((state) => state.todos.data);
+
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    setTodo([...todo, data.todo]);
-
+    dispatch(addTask(data.todos));
     reset();
   };
 
   const handleDelete = (index) => {
-    const newTodo = todo.filter((_, i) => i !== index);
-    setTodo(newTodo);
+    dispatch(removeTask(index));
   };
 
   const handleEdit = (index) => {
@@ -26,9 +29,7 @@ function TodoList() {
   };
 
   const handleChangeTodo = (e, index) => {
-    const newTodo = [...todo];
-    newTodo[index] = e.target.value;
-    setTodo(newTodo);
+    dispatch(editTask({ index, value: e.target.value }));
   };
 
   const isChecked = React.useRef([]);
@@ -55,7 +56,7 @@ function TodoList() {
               {/* penambahan */}
               <div className='bg-gray-300 border rounded-full w-full flex justify-between items-center pl-5 text-base mb-5'>
                 <input
-                  {...register("todo")}
+                  {...register("todos")}
                   className='outline-none'
                   type='text'
                 />
@@ -70,7 +71,7 @@ function TodoList() {
 
             {/* list */}
             <section>
-              {todo.map((item, index) => (
+              {todos.map((item, index) => (
                 <div
                   key={index}
                   className='bg-gray-300 border rounded w-full flex justify-between items-center px-5 py-2 text-base gap-4'
