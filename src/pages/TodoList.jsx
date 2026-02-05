@@ -70,11 +70,11 @@ function TodoList() {
             </form>
 
             {/* list */}
-            <section>
+            <section className='gird grid-cols-1 gap-4'>
               {todos.map((item, index) => (
                 <div
                   key={index}
-                  className='bg-gray-300 border rounded w-full flex justify-between items-center px-5 py-2 text-base gap-4'
+                  className='bg-gray-300 border rounded w-full flex justify-between items-center px-5 py-2 text-base gap-4 mb-4'
                 >
                   <div className='flex items-center gap-2'>
                     <input

@@ -1,16 +1,35 @@
-# React + Vite
+# Aplikasi Todolist
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Aplikasi Todolist sederhana untuk mencatat agenda atau aktivitas harian.
 
-Currently, two official plugins are available:
+## Teknologin yang digunakan
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React JS
+- Tailwind CSS
+- Vite
+- JavaScript
 
-## React Compiler
+## feature
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- input form dan tombol button + untuk nenambah agenda
+- checkbox sebagai penanda sudah di lakukan
+- tombol pensil buat mengedit
+- tombol gambar sampah untuk menghapus
 
-## Expanding the ESLint configuration
+### Screnshoot todolist
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![screnshoot todo list](./src/img/image.png)
+
+## Cara Menajalanakan Aplikasi
+
+- Clone repositori ini
+- buka vscode
+- buka vscode di terminal dan jalankan npm install
+- jalankan progam npm run dev
+- terdapat halaman todolist
+- masukan sebuah agenda atau tulisan apapun ke dalam input, dan klik tanda plus di samping kanan, maka agenda akan turun di bawah
+- tombol pensil untuk mengedit agenda yang sudah dilakukan
+- ketika sudah di lakukan dan ingin menandai saja, makan klik checkbox, makan tulisan akan tercoret
+- jika ingin menghapus makan klik tombol gambar sampah
+- dan jika ingin menambah agenda lain makan bisa lakukan mengisi input form kembali dan klik tombol button +
+- selesai
